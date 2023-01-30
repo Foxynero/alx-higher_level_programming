@@ -1,1 +1,1 @@
-About Python Classes - more
+This project is about Python Classes - more
