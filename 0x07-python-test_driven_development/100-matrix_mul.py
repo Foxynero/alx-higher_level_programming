@@ -9,9 +9,9 @@ def matrix_mul(m_a, m_b):
     """
     returns the product of matrices m_a and m_b
     """
-    if type(m_a) is not list:
+    if type(m_a) != list:
         raise TypeError('m_a must be a list')
-    if type(m_b) is not list:
+    if type(m_b) != list:
         raise TypeError('m_b must be a list')
     total_len = len(m_a)
     len_a = len(m_a[0])
@@ -24,13 +24,13 @@ def matrix_mul(m_a, m_b):
         if len(row) != len_a:
             raise TypeError('each row of m_a must should be of the same size')
         for i in row:
-            if type(i) is not int and type(i) is not float:
+            if type(i) != int and type(i) != float:
                 raise TypeError('m_a should contain only integers or floats')
     for row in m_b:
         if len(row) != len_b:
             raise TypeError('each row of m_b must should be of the same size')
         for i in row:
-            if type(i) is not int and type(i) is not float:
+            if type(i) != int and type(i) != float:
                 raise TypeError('m_b should contain only integers or floats')
     if len_a != len_b:
         raise ValueError('m_a and m_b can\'t be multiplied')
