@@ -1,20 +1,15 @@
 #!/usr/bin/python3
-"""append_after
-"""
+""" contains the append_after function """
 
 
 def append_after(filename="", search_string="", new_string=""):
-    """Insert new_string after search_string into filename
-    """
-
-    with open(filename, mode="r+", encoding="utf-8") as readFile:
-        temp = readFile.readlines()
-
-    count = 0
-    with open(filename, mode="w", encoding="utf-8") as writeFile:
-        for lines in temp:
-            count += 1
-            if search_string in lines:
-                temp.insert(count, new_string)
-        for lines in temp:
-            writeFile.write(lines)
+    """ inserts a line of text to file after each line containing a string """
+    with open(filename, 'r+', encoding='utf-8') as f:
+        lines = []
+        for line in f:
+            lines.append(line)
+            if search_string in line:
+                lines.append(new_string)
+                f.seek(0)
+                for line in lines:
+                    f.write(line)
