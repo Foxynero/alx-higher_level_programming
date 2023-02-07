@@ -22,3 +22,4 @@ def pascal_triangle(n):
                     rowlist.append(previous[i - 1] + previous[i])
         previous = rowlist
         pascal_triangle.append(rowlist)
+        return pascal_triangle
