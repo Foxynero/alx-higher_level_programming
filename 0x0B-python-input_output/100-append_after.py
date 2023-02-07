@@ -10,6 +10,6 @@ def append_after(filename="", search_string="", new_string=""):
             lines.append(line)
             if search_string in line:
                 lines.append(new_string)
-                f.seek(0)
-                for line in lines:
-                    f.write(line)
+        f.seek(0)
+        for line in lines:
+            f.write(line)
