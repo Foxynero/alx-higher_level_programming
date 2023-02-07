@@ -3,28 +3,17 @@
 
 
 def pascal_triangle(n):
-    """ends of each list in the matrix are summed to display the next list
-    until the middle of the list. The number '1' is always at both ends.
-    """
+    """ returns the pascal triangle of n """
     if n <= 0:
         return []
-
-    res = []
-    for elem in range(n):
-        if elem == 0:
-            res.append([1])
-            continue
-        if elem == 1:
-            res.append([1, 1])
-            continue
-        row = []
-        # init row
-        for item in range(elem + 1):
-            row.append(item)
-        for item in range(1, elem):
-            row[0] = 1
-            row[elem] = 1
-            row[item] = res[elem - 1][item] + res[elem - 1][item - 1]
-        res.append(row)
-
-        return res
+    p_t = [[] for x in range(n)]
+    p_t[0] = [1]
+    if n > 1:
+        p_t[1] = [1, 1]
+    if n > 2:
+        for i in range(2, n):
+            p_t[i].append(1)
+            for j in range(i - 1):
+                p_t[i].append(p_t[i - 1][j] + p_t[i - 1][j + 1])
+            p_t[i].append(1)
+    return p_t
