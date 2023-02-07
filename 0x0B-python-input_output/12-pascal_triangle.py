@@ -26,3 +26,5 @@ def pascal_triangle(n):
             row[elem] = 1
             row[item] = res[elem - 1][item] + res[elem - 1][item - 1]
         res.append(row)
+
+        return res
