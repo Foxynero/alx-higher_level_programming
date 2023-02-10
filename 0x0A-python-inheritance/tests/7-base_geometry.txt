@@ -1,147 +1,117 @@
-=============================
-How to Use 7-base_geometry.py
-=============================
+==============================
+doctest for 7-base_geometry.py
+==============================
 
-This modules defines a base geometry class BaseGeometry.
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
 
-Instantiation
-=============
+TEST CONDITIONS
+===============
 
-``BaseGeometry`` includes no attributes, and accordingly is initialized 
-with no arguments.
-
+testing instantiation
 ::
+>>> print(bg.__dict__)
+{}
 
-    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
-    >>> bg = BaseGeometry()
-    >>> type(bg)
-    <class '7-base_geometry.BaseGeometry'>
-
+testing area method
 ::
+>>> try:
+...     bg.area()
+... except Exception as err:
+...     print(err)
+area() is not implemented
 
-    >>> print(bg) # doctest: +ELLIPSIS
-    <7-base_geometry.BaseGeometry object at ...>
-
-In fact, any arguments supplied to an instantiation of ``BaseGeometry`` results
-in a TypeError.
-
+testing integer_validator method
 ::
+>>> try:
+...     bg.integer_validator("x", 1)
+... except Exception as err:
+...     print(err)
 
-    >>> bg = BaseGeometry(None)
-    Traceback (most recent call last):
-    TypeError: object() takes no parameters
-
-Methods
-=======
-
-``BaseGeometry`` features two methods - ``area(self)`` and 
-``integer_validator(self, name, value)``. ``area(...)`` is not yet
-implemented.
-
+testing integer_validator method with TypeError float
 ::
+>>> try:
+...     bg.integer_validator("x", 3.14159)
+... except Exception as err:
+...     print(err)
+x must be an integer
 
-    >>> bg = BaseGeometry()
-    >>> print(bg.area) # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
-    <bound method BaseGeometry.area of <7-base_geometry.BaseGeometry 
-     object at...>>
-
+testing integer_validator method with TypeError string
 ::
+>>> try:
+...     bg.integer_validator("x", "52")
+... except Exception as err:
+...     print(err)
+x must be an integer
 
-    >>> bg.area()
-    Traceback (most recent call last):
-    Exception: area() is not implemented
-
-The second method, ``integer_validator(...)``, validates the integer value
-of a paramter. The first parameter, ``name``, is the name of the argument to
-check. The second argument, ``value``, is the argument to check.
-
+testing integer_validator method with TypeError tuple
 ::
+>>> try:
+...     bg.integer_validator("x", (0,))
+... except Exception as err:
+...     print(err)
+x must be an integer
 
-    >>> print(bg.integer_validator) # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
-    <bound method BaseGeometry.integer_validator of <7-base_geometry.BaseGeometry 
-    object at...>>
-
-If ``value`` is a valid integer, the function does nothing.
-
+testing integer_validator method with TypeError list
 ::
+>>> try:
+...     bg.integer_validator("x", [7])
+... except Exception as err:
+...     print(err)
+x must be an integer
 
-
-   >>> bg.integer_validator("valid number", 1)
-
-But, if ``value`` is not an integer, a ``TypeError`` is raised.
-
+testing integer_validator method with TypeError boolean
 ::
+>>> try:
+...     bg.integer_validator("x", True)
+... except Exception as err:
+...     print(err)
+x must be an integer
 
-    >>> bg.integer_validator("invalid number", "number")
-    Traceback (most recent call last):
-    TypeError: invalid number must be an integer
-
+testing integer_validator method with TypeError set
 ::
+>>> try:
+...     bg.integer_validator("x", {8})
+... except Exception as err:
+...     print(err)
+x must be an integer
 
-    >>> bg.integer_validator("another invalid", True)
-    Traceback (most recent call last):
-    TypeError: another invalid must be an integer
-
+testing integer_validator method with ValueError negative
 ::
+>>> try:
+...     bg.integer_validator("x", -2)
+... except Exception as err:
+...     print(err)
+x must be greater than 0
 
-    >>> bg.integer_validator("invalid tuple", (1,))
-    Traceback (most recent call last):
-    TypeError: invalid tuple must be an integer
-
+testing integer_validator method with ValueError zero
 ::
+>>> try:
+...     bg.integer_validator("x", 0)
+... except Exception as err:
+...     print(err)
+x must be greater than 0
 
-    >>> bg.integer_validator("and another", [3])
-    Traceback (most recent call last):
-    TypeError: and another must be an integer
-
+testing integer_validator method with no arguments
 ::
+>>> try:
+...     bg.integer_validator()
+... except Exception as err:
+...     print(err)
+integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
-    >>> bg.integer_validator("more invalid testing", {3, 4})
-    Traceback (most recent call last):
-    TypeError: more invalid testing must be an integer
-
+testing integer_validator method with only one argument
 ::
+>>> try:
+...     bg.integer_validator("x")
+... except Exception as err:
+...     print(err)
+integer_validator() missing 1 required positional argument: 'value'
 
-    >>> bg.integer_validator("absolutely every possible invalid", None)
-    Traceback (most recent call last):
-    TypeError: absolutely every possible invalid must be an integer
-
-And if ``value`` is an integer, but less than or equal to zero, a ValueError
-is raised.
-
+testing integer_validator with None
 ::
-
-    >>> bg.integer_validator("invalid int", -1)
-    Traceback (most recent call last):
-    ValueError: invalid int must be greater than 0
-
-::
-
-    >>> bg.integer_validator("invalid int", 0)
-    Traceback (most recent call last):
-    ValueError: invalid int must be greater than 0
-
-Both ``name`` and ``value`` must be provided. Otherwise, a TypeError is raised.
-
-::
-
-    >>> bg.integer_validator() # doctest: +NORMALIZE_WHITESPACE
-    Traceback (most recent call last):
-    TypeError: integer_validator() missing 2 required positional arguments: 
-    'name' and 'value'
-
-::
-
-    >>> bg.integer_validator(None) # doctest: +NORMALIZE_WHITESPACE
-    Traceback (most recent call last):
-    TypeError: integer_validator() missing 1 required positional argument: 
-    'value'
-
-The method assumes the paramter ``name`` will be a string, but ``name`` of any
-type will be printed.
-
-::
-
-    >>> bg.integer_validator({"a": 1}, (1, 2))
-    Traceback (most recent call last):
-    TypeError: {'a': 1} must be an integer
+>>> try:
+...     bg.integer_validator(None, None)
+... except Exception as err:
+...     print(err)
+None must be an integer
