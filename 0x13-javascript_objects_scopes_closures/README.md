@@ -1,1 +1,1 @@
-LX project on Javascript objects scopes and closures
+ALX project on Javascript objects scopes and closures
