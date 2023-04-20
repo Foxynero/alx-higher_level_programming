@@ -25,8 +25,7 @@ def main():
     c.close()
     db.close()
 
+
 if __name__ == "__main__":
-    
-    
     from sys import argv
     main()
