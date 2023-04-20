@@ -5,6 +5,7 @@ import MySQLdb
 
 def main():
 
+
     # connect
     db = MySQLdb.connect(host='localhost',
                          port=3306,
