@@ -5,29 +5,21 @@ defines function to find peak in list of unsorted integers
 
 
 def find_peak(list_of_integers):
-    """
-    finds a peak in a list of unsorted ints
-    """
-    if list_of_integers is None or list_of_integers == []:
+    """Finds a peak in a list of integers"""
+    if not list_of_integers:
         return None
-    mid = int(len(list_of_integers) / 2)
-    if len(list_of_integers) % 2 == 0:
-        mid = mid - 1
-    middle = list_of_integers[mid]
-    low = list_of_integers[0]
-    high = list_of_integers[-1]
-    if middle is low and middle is high:
-        return middle
-    if middle is low and middle > list_of_integers[mid + 1]:
-        return middle
-    if middle > list_of_integers[mid + 1]:
-        if middle > list_of_integers[mid - 1]:
-            return middle
-        else:
-            peak_low = find_peak(list_of_integers[:mid])
-            if peak_low is not None:
-                return peak_low
+    return fp(list_of_integers, 0, len(list_of_integers) - 1,
+              len(list_of_integers))
+
+
+def fp(arr, low, high, n):
+    """Helper func"""
+    mid = low + (high - low)//2
+
+    if (mid == 0 or arr[mid - 1] <= arr[mid]) and\
+       (mid == n - 1 or arr[mid + 1] <= arr[mid]):
+        return arr[mid]
+    elif (mid > 0 and arr[mid - 1] > arr[mid]):
+        return fp(arr, low, mid - 1, n)
     else:
-        peak_high = find_peak(list_of_integers[(mid + 1):])
-        if peak_high is not None:
-            return peak_high
+        return fp(arr, mid + 1, high, n)
