@@ -1,1 +1,1 @@
-About Python inheritance project
+About Python inheritance project - Foster Adu-Gyamfi
