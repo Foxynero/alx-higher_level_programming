@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-""" module 1-my_list contains the class MyList """
+"""
+contains the MyList class
+"""
+
 
 class MyList(list):
     """a subclass of list"""
