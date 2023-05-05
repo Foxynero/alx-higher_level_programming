@@ -1,14 +1,12 @@
 #!/usr/bin/python3
 """ module 1-my_list contains the class MyList """
 
-
 class MyList(list):
-    """ defines MyList class """
-
+    """a subclass of list"""
     def __init__(self):
-        """ initializes new MyList object """
-        pass
+        """initializes the object"""
+        super().__init__()
 
     def print_sorted(self):
-        """ prints sorted list """
+        """prints the sorted list"""
         print(sorted(self))
