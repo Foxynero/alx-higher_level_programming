@@ -31,9 +31,6 @@ def matrix_mul(m_a, m_b):
     if not all(isinstance(row, list) for row in m_b):
         raise TypeError("m_b must be a list of lists")
         
-    if not isinstance(m_a[0], list) or not all(isinstance(row, list) for row in m_b):
-        raise TypeError("m_a must be a list of lists or m_b must be a list of lists")
-
     if not all((isinstance(ele, int) or isinstance(ele, float))
                for ele in [num for row in m_a for num in row]):
         raise TypeError("m_a should contain only integers or floats")
