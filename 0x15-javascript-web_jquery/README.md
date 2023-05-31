@@ -1,1 +1,1 @@
-ALX project on JQuery
+ALX project on JQuery by Foster Adu-Gyamfi
